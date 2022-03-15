@@ -10,12 +10,12 @@ int main(void)
 	int num = '0';
 	char letter = 'a';
 
-	while (num <= '9')
+	while (num <= '9')/*print 0-9*/
 	{
 		putchar(num);
 		num++;
 	}
-	while (letter <= 'f')
+	while (letter <= 'f')/*print a to f*/
 	{
 		putchar(letter);
 		letter++;
