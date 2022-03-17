@@ -9,7 +9,6 @@ int main(void)
 {
 	long num = 612852475143;
 	long factor = 2;
-
 	while (factor < num)
 	{
 		if (num % factor == 0)
