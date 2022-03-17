@@ -1,23 +1,28 @@
 #include "main.h"
 
 /**
- * more_numbers - prints integer from 0 to 14 14 times
+ * more_numbers - prints 01234567891011121314\n x10
+ *
+ * Return: void
  */
+
 
 void more_numbers(void)
 {
-	int number, tens, units, row;
+	char a, b, c, i;
 
-	for (row = 1; row <= 10; row++)
+	for (i = 0; i < 10; i++)
 	{
-		for (number = 0; number <= 14; number++)
+		for (c = 0; c <= 14; c++)
 		{
-			tens = number / 10;
-			units = number % 10;
-			if (number > 9)
-				_putchar(tens + '0');
-
-			_putchar(units + '0');
+			if (c < 10)
+				b = c;
+			else
+			{
+				a = c / 10; b = c % 10;
+				_putchar('0' + a);
+			}
+			_putchar('0' + b);
 		}
 		_putchar('\n');
 	}
