@@ -1,41 +1,25 @@
 #include "main.h"
 
 /**
- * puts_half - print half
- * @str: input string
- *
- * Description: prints half of a string
- * Return: Always (0);
+ * puts_half - prints half of a string followed by a new line
+ * @str: the argument
  */
 
 void puts_half(char *str)
 {
-	int i;
-	int diff;
+	int x;
 
-	while (str[i] != '\0')
-	{
-		i++;
-	}
-	if (i % 2 == 1)
-	{
-		diff = (i + 1) / 2;
-
-		while (str[diff] != '\0')
-		{
-			_putchar(str[diff]);
-			diff++;
-		}
-	}
+	x = 0;
+	while (str[x])
+		x++;
+	if (x % 2 != 0)
+		x = (x + 1) / 2; /*Add 1: decrease length of odd string half*/
 	else
+		x = x / 2;
+	while (str[x])
 	{
-		diff = (i / 2);
-
-		while (str[diff] != '\0')
-		{
-			_putchar(str[diff]);
-			diff++;
-		}
+		_putchar(str[x]);
+		x++;
 	}
 	_putchar('\n');
 }
