@@ -1,20 +1,15 @@
 #include "main.h"
 
 /**
- * print_rev - Print a string in reverse order followed by new line
- * @s: the string
+ * main - check the code for Holberton School students.
+ *
+ * Return: Always 0.
  */
-
-void print_rev(char *s)
+int main(void)
 {
-	int length, i;
+    char *str;
 
-	for (length = 0; *s != '\0'; length++)
-		s++;
-	for (i = length; i > 0; i--)
-	{
-		_putchar(*s);
-		s--;
-	}
-	_putchar('\n');
+    str = "I do not fear computers. I fear the lack of them - Isaac Asimov";
+    print_rev(str);
+    return (0);
 }
