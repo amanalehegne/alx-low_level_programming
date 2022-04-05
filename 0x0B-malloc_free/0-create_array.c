@@ -9,25 +9,24 @@
  * Return: pointer to array
  */
 
-char *create_array(unsigned int size, char c)
+char *_strdup(char *str)
 {
-	char *arr;
-	int i;
+	char *strout;
+	unsigned int i, j;
 
-	if (size == 0)
+	if (str == NULL)
 		return (NULL);
 
-	arr = malloc(sizeof(c) * size);
+	for (i = 0; str[i] != '\0'; i++)
+		;
 
-	if (arr == NULL)
+	strout = (char *)malloc(sizeof(char) * (i + 1));
+
+	if (strout == NULL)
 		return (NULL);
 
-	while (i < (int)size)
-	{
-		*(arr + i) = c;
-		i++;
-	}
-	*(arr + i) = '\0';
-	
-	return (arr);
+	for (j = 0; j <= i; j++)
+		strout[j] = str[j];
+
+	return (strout);
 }
