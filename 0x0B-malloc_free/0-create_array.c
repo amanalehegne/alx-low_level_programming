@@ -1,10 +1,10 @@
 #include "main.h"
 #include <stdlib.h>
 /**
- * _strdup - returns a pointer to a newly allocated space in memory.
- * @str: string.
- *
- * Return: pointer of an array of chars
+ * create_array - create array of chars and initialize with a specific char
+ * @size: size of array
+ * @c: fill array values with this char
+ * Return: pointer to array
  */
 char *create_array(unsigned int size, char c)
 {
