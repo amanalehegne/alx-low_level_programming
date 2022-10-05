@@ -1,68 +1,103 @@
 #include "search_algos.h"
+
 /**
- * binary_search_recursive - search through an array using binary search
- * @array: the array to be searched
+ * recursive_search - searches for a value in an array of
+ * integers using the Binary search algorithm
+ *
+ *
+ * @array: input array
  * @size: size of the array
- * @value: value to be searched
- * @left: left side start point of the array to be searched
- * @right: right side end poin of the array to be searched
- * Return: returns the index of the first value found else returns -1
+ * @value: value to search in
+ * Return: index of the number
  */
-int binary_search_recursive(int *array, size_t size,
-			     int value, int left, int right)
+int recursive_search(int *array, size_t size, int value)
 {
-	int mid = (left + right) / 2, i;
+	size_t half = size / 2;
+	size_t i;
 
-	if (!array)
-		return (-1);
-	if (left > right || right < left)
+	if (array == NULL || size == 0)
 		return (-1);
 
-	printf("Searching in array: ");
-	for (i = left; i <= right; i++)
-	{
-		if (i == left)
-			printf("%d", array[i]);
-		else
-			printf(", %d", array[i]);
-	}
+	printf("Searching in array");
+
+	for (i = 0; i < size; i++)
+		printf("%s %d", (i == 0) ? ":" : ",", array[i]);
+
 	printf("\n");
-	if (array[mid] == value)
-		return (mid);
-	else if (array[mid] > value)
-		return (binary_search_recursive(array, size, value,
-						left, mid - 1));
-	else
-		return (binary_search_recursive(array, size, value,
-						mid + 1, right));
+
+	if (half && size % 2 == 0)
+		half--;
+
+	if (value == array[half])
+		return ((int)half);
+
+	if (value < array[half])
+		return (recursive_search(array, half, value));
+
+	half++;
+
+	return (recursive_search(array + half, size - half, value) + half);
 }
+
 /**
- * exponential_search - searches through an array using the exponential_search
- * @array: the array
- * @size: the size of the array
- * @value: the value to be searched
- * Return: the index of the value else -1 if not found
+ * binary_search - calls to binary_search to return
+ * the index of the number
+ *
+ * @array: input array
+ * @size: size of the array
+ * @value: value to search in
+ * Return: index of the number
+ */
+int binary_search(int *array, size_t size, int value)
+{
+	int index;
+
+	index = recursive_search(array, size, value);
+
+	if (index >= 0 && array[index] != value)
+		return (-1);
+
+	return (index);
+}
+
+/**
+ * exponential_search - searches for a value in an array of
+ * integers using the Exponential search algorithm
+ *
+ * @array: input array
+ * @size: size of the array
+ * @value: value to search in
+ * Return: index of the number
  */
 int exponential_search(int *array, size_t size, int value)
 {
-	size_t bound = 1, higher;
+	size_t index, next;
+	int result;
 
-	if (!array)
+	if (array == NULL)
 		return (-1);
-	if (size == 0)
-		return (-1);
-	while (bound < size && array[bound] < value)
+
+	if (array[0] == value)
+		return (0);
+
+	index = 1;
+
+	while (array[index] < value && index < size)
 	{
-		printf("Value checked array[%d] = [%d]\n", (int)bound, array[bound]);
-	    bound *= 2;
+		printf("Value checked array[%d] = [%d]\n", (int)index, array[index]);
+		index *= 2;
 	}
-	if (bound >= size)
-		higher = size - 1;
-	else
-	    higher = bound;
-	printf("Value found between indexes [%d] and [%d]\n", (int)bound / 2,
-	       (int)higher);
-	int res = binary_search_recursive(array, size, value, bound / 2, higher);
 
-	return (res);
+	next = (index >= size) ? (size - 1) : index;
+
+	index /= 2;
+
+	printf("Value found between indexes [%d] and [%d]\n", (int)index, (int)next);
+
+	result = binary_search(array + index, (next + 1) - index, value);
+
+	if (result >= 0)
+		result += index;
+
+	return (result);
 }
