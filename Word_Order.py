@@ -4,7 +4,7 @@ def word_order(words):
         dic[i] = 1 + dic.get(i, 0)
     ans = list(dic.values())
     print(len(ans))
-    print(ans)
+    print(*ans)
 
 
 x = int(input())
